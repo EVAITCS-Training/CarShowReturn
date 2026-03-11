@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Show | Car Form</title>
+</head>
+<body>
+    <form th:object="${newCar}">
+        <input type="hidden" name="id" id="id" th:field="*{carId}">
+        <label for="make">Make: </label><input type="text" name="make" id="make" th:field="*{make}" placeholder="Please enter a Make">
+        <input type="text" name="model" id="model" th:field="*{model}" placeholder="Please enter a Model">
+        <select name="engineType" id="engineType" th:field="*{engineType}">
+            <option value="V6_ENGINE">V6 Engine</option>
+            <option value="V8_ENGINE">V8 Engine</option>
+        </select>
+        <select name="vehicleType" id="vehicleType" th:field="*{vehicleType}">
+            <option value="SUDAN">Sudan</option>
+            <option value="TRUCK">Truck</option>
+            <option value="SUV">SUV</option>
+            <option value="RV">RV</option>
+        </select>
+        <input type="number" name="doorCount" id="doorCount" th:field="*{doorCount}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
