@@ -5,21 +5,43 @@
     <title>Car Show | Car Form</title>
 </head>
 <body>
-    <form th:object="${newCar}">
+    <form th:action="@{/car/create}" th:object="${newCar}" method="post">
         <input type="hidden" name="id" id="id" th:field="*{carId}">
-        <label for="make">Make: </label><input type="text" name="make" id="make" th:field="*{make}" placeholder="Please enter a Make">
-        <input type="text" name="model" id="model" th:field="*{model}" placeholder="Please enter a Model">
+        <div>
+            <label for="make">Make: </label>
+            <input type="text" name="make" id="make" th:field="*{make}" placeholder="Please enter a Make">
+            <div th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></div>
+        </div>
+        <div>
+            <label for="model">Model: </label>
+            <input type="text" name="model" id="model" th:field="*{model}" placeholder="Please enter a Model">
+            <div th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
+        </div>
+        <div>
+            <label for="engineType">Engine Type: </label>
         <select name="engineType" id="engineType" th:field="*{engineType}">
+            <option value="">Please select an Engine Type</option>
             <option value="V6_ENGINE">V6 Engine</option>
             <option value="V8_ENGINE">V8 Engine</option>
         </select>
+            <div th:if="${#fields.hasErrors('engineType')}" th:errors="*{engineType}"></div>
+        </div>
+        <div>
+            <label for="vehicleType">Vehicle Type: </label>
         <select name="vehicleType" id="vehicleType" th:field="*{vehicleType}">
+            <option value="">Please select a Vehicle Type</option>
             <option value="SUDAN">Sudan</option>
             <option value="TRUCK">Truck</option>
             <option value="SUV">SUV</option>
             <option value="RV">RV</option>
         </select>
-        <input type="number" name="doorCount" id="doorCount" th:field="*{doorCount}">
+            <div th:if="${#fields.hasErrors('vehicleType')}" th:errors="*{vehicleType}"></div>
+        </div>
+        <div>
+            <label for="doorCount">Door Count: </label>
+            <input type="number" name="doorCount" id="doorCount" th:field="*{doorCount}" min="2" max="6">
+            <div th:if="${#fields.hasErrors('doorCount')}" th:errors="*{doorCount}"></div>
+        </div>
         <input type="submit" value="Submit">
     </form>
 </body>

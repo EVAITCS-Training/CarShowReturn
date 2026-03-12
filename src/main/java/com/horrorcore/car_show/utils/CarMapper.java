@@ -9,7 +9,7 @@ import com.horrorcore.car_show.enums.VehicleType;
 public class CarMapper {
     public static Car fromDto(CarRequest request) {
         return new Car(
-                request.carId(),
+                request.carId() != null ? request.carId() : 0L,
                 request.make(),
                 request.model(),
                 EngineType.valueOf(request.engineType()),

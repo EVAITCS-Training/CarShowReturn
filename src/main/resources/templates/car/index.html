@@ -11,6 +11,9 @@
             <h5 th:text="|Door Count ${car.doorCount()}|"></h5>
             <h5 th:text="|Engine Type ${car.engineType()}|"></h5>
             <h6 th:text="|Vehicle Type ${car.vehicleType()}|"></h6>
+            <form th:action="@{/car/{id}/delete(id=${car.carId()})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
         </div>
     </div>
 </body>
