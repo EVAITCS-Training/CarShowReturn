@@ -13,5 +13,5 @@ public interface OwnerService {
     List<OwnerResponse> getOwnersByLastName(String lastName);
     List<OwnerResponse> getOwnersByDateOfBirth (String dateOfBirth);
     OwnerResponse updateOwnerInformation(OwnerRequest ownerRequest);
-    void deleteCarById(long id);
+    void deleteOwnerById(long id);
 }

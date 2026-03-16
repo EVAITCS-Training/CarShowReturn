@@ -5,7 +5,7 @@ import com.horrorcore.car_show.enums.Gender;
 import java.time.LocalDate;
 
 public record OwnerResponse(
-        long carId,
+        long ownerId,
         String firstName,
         String lastName,
         Gender gender,

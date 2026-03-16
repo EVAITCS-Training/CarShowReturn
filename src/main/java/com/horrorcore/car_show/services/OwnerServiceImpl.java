@@ -82,7 +82,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void deleteCarById(long id) {
+    public void deleteOwnerById(long id) {
         if (!ownerRepository.existsById(id)) throw new InvalidOwnerIdException("Owner Id " + " not found!");
         ownerRepository.deleteById(id);
 
