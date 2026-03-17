@@ -16,22 +16,22 @@ public class FilterChainConfig {
                 request ->
                         request.requestMatchers(
                                 HttpMethod.GET,
-                                "/car",
-                                "/car/",
-                                "/owner",
-                                "/owner/",
-                                "/auth/**",
+                                "/api/v1/car",
+                                "/api/v1/car/",
+                                "/api/v1/owner",
+                                "/api/v1/owner/",
+                                "/api/v1/auth/**",
                                 "/",
                                 "/css/**",
                                 "/js/**"
                         ).permitAll()
                                 .requestMatchers(
-                                        "/car/create",
-                                        "/car/create/",
-                                        "/car/{id}/delete",
-                                        "/owner/create",
-                                        "/owner/create/",
-                                        "/owner/delete/{id}"
+                                        "/api/v1/car/create",
+                                        "/api/v1/car/create/",
+                                        "/api/v1/car/{id}/delete",
+                                        "/api/v1/owner/create",
+                                        "/api/v1/owner/create/",
+                                        "/api/v1/owner/delete/{id}"
                                 ).authenticated()
         ).formLogin(
                 form -> form.defaultSuccessUrl("/car")
