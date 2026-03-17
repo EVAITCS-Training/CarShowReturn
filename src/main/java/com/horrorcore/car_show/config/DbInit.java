@@ -2,15 +2,18 @@ package com.horrorcore.car_show.config;
 
 import com.horrorcore.car_show.entities.Car;
 import com.horrorcore.car_show.entities.Owner;
+import com.horrorcore.car_show.entities.UserCredential;
 import com.horrorcore.car_show.enums.EngineType;
 import com.horrorcore.car_show.enums.Gender;
 import com.horrorcore.car_show.enums.VehicleType;
 import com.horrorcore.car_show.repositories.CarRepository;
 import com.horrorcore.car_show.repositories.OwnerRepository;
+import com.horrorcore.car_show.repositories.UserCredentialRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -24,6 +27,8 @@ public class DbInit implements CommandLineRunner {
 
     private final OwnerRepository ownerRepository;
     private final CarRepository carRepository;
+    private final UserCredentialRepository userCredentialRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) {
@@ -54,6 +59,33 @@ public class DbInit implements CommandLineRunner {
         jordan.setDateOfBirth(LocalDate.of(1988, 11, 5));
 
         ownerRepository.saveAll(List.of(marcus, priya, jordan));
+
+        // --- User Credentials ---
+        String defaultPassword = passwordEncoder.encode("CarShow2026!");
+
+        UserCredential marcusUser = UserCredential.builder()
+                .email("marcus@carshow.com")
+                .password(defaultPassword)
+                .role("USER")
+                .owner(marcus)
+                .build();
+
+        UserCredential priyaUser = UserCredential.builder()
+                .email("priya@carshow.com")
+                .password(defaultPassword)
+                .role("USER")
+                .owner(priya)
+                .build();
+
+        UserCredential jordanUser = UserCredential.builder()
+                .email("jordan@carshow.com")
+                .password(defaultPassword)
+                .role("USER")
+                .owner(jordan)
+                .build();
+
+        userCredentialRepository.saveAll(List.of(marcusUser, priyaUser, jordanUser));
+        log.info("Seeded user accounts: marcus@carshow.com, priya@carshow.com, jordan@carshow.com (password: CarShow2026!)");
 
         // --- Marcus: classic muscle / truck guy ---
         Car mustang = new Car();
