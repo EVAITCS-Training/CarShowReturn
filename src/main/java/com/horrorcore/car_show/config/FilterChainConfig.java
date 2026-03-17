@@ -20,6 +20,7 @@ public class FilterChainConfig {
                                 "/car/",
                                 "/owner",
                                 "/owner/",
+                                "/auth/**",
                                 "/",
                                 "/css/**",
                                 "/js/**"
