@@ -2,7 +2,6 @@ package com.horrorcore.car_show.controllers;
 
 import com.horrorcore.car_show.dtos.OwnerRequest;
 import com.horrorcore.car_show.dtos.OwnerResponse;
-import com.horrorcore.car_show.services.CarService;
 import com.horrorcore.car_show.services.OwnerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class OwnerController {
         return ResponseEntity.created(null).body(ownerService.createOwner(ownerRequest));
     }
 
-    @PutMapping(value = {"{id}/update"})
+    @PutMapping(value = {"/{id}/update"})
     public ResponseEntity<OwnerResponse> updateOwnerRequest(@Valid @RequestBody OwnerRequest ownerRequest) {
         return ResponseEntity.created(null).body(ownerService.createOwner(ownerRequest));
     }
