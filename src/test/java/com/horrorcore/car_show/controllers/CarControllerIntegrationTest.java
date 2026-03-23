@@ -41,6 +41,7 @@ public class CarControllerIntegrationTest {
     private CarRepository carRepository;
 
     private static MySQLContainer<?> mysqlContainer;
+    private static boolean usingMysql = false;
 
     @DynamicPropertySource
     static void dynamicProperties(DynamicPropertyRegistry registry) {
@@ -167,9 +168,9 @@ public class CarControllerIntegrationTest {
         List<CompletableFuture<Long>> futures = new ArrayList<>();
 
         IntStream.range(0, concurrent).forEach(i -> {
-            CompletableFuture<Long> fut = CompletableFuture.supplyAsync(() -> {
-                long start = System.nanoTime();
+                org.springframework.web.client.RestTemplate rt = (restTemplate != null) ? restTemplate : new org.springframework.web.client.RestTemplate();
                 org.springframework.web.client.RestTemplate rt = new org.springframework.web.client.RestTemplate();
+                org.springframework.web.client.RestTemplate rt = (restTemplate != null) ? restTemplate : new org.springframework.web.client.RestTemplate();
                 ResponseEntity<List<CarResponse>> resp = rt.exchange(
                         "http://localhost:" + port + "/api/v1/car/",
                         HttpMethod.GET,
